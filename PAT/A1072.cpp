@@ -108,10 +108,11 @@ int main(void) {
             puts("No Solution");
         else {
             vector< pair<int,pii> >::iterator it=min_element(v.begin(),v.end());
+            double avgD=double(it->second.first)/N;
             printf("G%d\n%.1f %.1f\n",
                    it->second.second-N,
                    double(-it->first),
-                   double(it->second.first)/N);
+                   round(avgD*10)/10);
         }
     }
     return 0;
