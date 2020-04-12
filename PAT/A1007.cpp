@@ -21,7 +21,7 @@ int main(void) {
             if(a[i]>=0) allNegative=false;
         }
         if(allNegative) {
-            printf("0 %d %d\n",a[0],a[N-1]);
+            printf("0 %lld %lld\n",a[0],a[N-1]);
             continue;
         }
         dp[0]=a[0];
@@ -37,7 +37,7 @@ int main(void) {
         }
         int r=max_element(dp,dp+N)-dp;
         int l=lb[r];
-        printf("%lld %d %d\n",dp[r],a[l],a[r]);
+        printf("%lld %lld %lld\n",dp[r],a[l],a[r]);
     }
     return 0;
 }
