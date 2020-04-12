@@ -73,7 +73,7 @@ void cDijkstra() {
             if(mp(dc[to],dw[to])<=mp(dc[from]+cost,dw[from]+weight))
                 continue;
             dc[to]=dc[from]+cost;
-            dw[to]=dw[from]+cost;
+            dw[to]=dw[from]+weight;
             cPre[to]=from;
             pq.push(mp(dc[to],to));
         }
@@ -120,7 +120,7 @@ void printPath(int pre[MAXN]) {
 }
 
 int main(void) {
-    freopen("in.txt","r",stdin);
+    // freopen("in.txt","r",stdin);
     int M,from,to,oneway,cost,weight;
     while(~scanf("%d%d",&N,&M)) {
         init();
