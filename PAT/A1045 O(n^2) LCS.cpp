@@ -9,6 +9,9 @@ typedef long long ll;
 
 int N,M,L,a[MAXL+1],b[MAXL+1],fav[MAXC+1],dp[2][MAXL+1];
 map<int,int> cnt;
+// dp[i][j]=length of longest common subsequence in a[0~i] and b[0~j]
+// dp[i][j]=max(dp[i-1][j-1]+(a[i]==b[i]?1:0),
+//				max(dp[i-1][j],dp[i][j-1])
 
 int main(void) {
 //    freopen("in.txt","r",stdin);
