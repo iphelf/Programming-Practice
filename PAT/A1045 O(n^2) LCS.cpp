@@ -7,7 +7,7 @@ using namespace std;
 const int MAXL=1e4,MAXC=2e2;
 typedef long long ll;
 
-int N,M,L,a[MAXL+1],b[MAXL+1],fav[MAXC+1],dp[MAXL+1][MAXL+1];
+int N,M,L,a[MAXL+1],b[MAXL+1],fav[MAXC+1],dp[2][MAXL+1];
 map<int,int> cnt;
 
 int main(void) {
@@ -34,13 +34,15 @@ int main(void) {
             }
         }
         n--;
-//        for(int i=1; i<=n; i++) printf("%d%c",a[i],i==n?'\n':' ');
-//        for(int i=1; i<=n; i++) printf("%d%c",b[i],i==n?'\n':' ');
-        for(int i=0; i<=n; i++) dp[0][i]=dp[i][0]=0;
-        for(int i=1; i<=n; i++) for(int j=1; j<=n; j++)
-                dp[i][j]=max(dp[i-1][j-1]+(a[i]==b[j]?1:0),
-                             max(dp[i-1][j],dp[i][j-1]));
-        printf("%d\n",dp[n][n]);
+        for(int i=0; i<=n; i++) dp[0][i]=0;
+        dp[1][0]=0;
+        for(int i=1,curr,prev; i<=n; i++) for(int j=1; j<=n; j++) {
+                curr=i%2;
+                prev=1-curr;
+                dp[curr][j]=max(dp[prev][j-1]+(a[i]==b[j]?1:0),
+                                max(dp[prev][j],dp[curr][j-1]));
+            }
+        printf("%d\n",dp[n%2][n]);
     }
     return 0;
 }
