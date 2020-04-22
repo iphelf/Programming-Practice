@@ -7,7 +7,7 @@ using namespace std;
 const int MAXN=1e3;
 typedef map<int,int> mii;
 
-int N,pre[MAXN],post[MAXN],val[MAXN],lc[MAXN],rc[MAXN];
+int N,pre[MAXN],post[MAXN],val[MAXN];
 mii m;
 bool mirror;
 
