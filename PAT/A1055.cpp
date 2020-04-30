@@ -13,7 +13,6 @@ struct Person {
 
 int N;
 Person p[MAXN];
-vector<Person *> group[MAXA+1];
 
 bool cmp(const Person &l,const Person &r) {
     if(l.worth!=r.worth) return l.worth>r.worth;
@@ -28,8 +27,6 @@ int main(void) {
     for(int i=0; i<N; i++)
         scanf(" %s %d %d",p[i].name,&p[i].age,&p[i].worth);
     sort(p,p+N,cmp);
-    for(int i=0; i<N; i++) if(group[p[i].age].size()<100)
-            group[p[i].age].push_back(&p[i]);
     for(int k=1; k<=K; k++) {
         printf("Case #%d:\n",k);
         int cnt=0;
