@@ -1,0 +1,56 @@
+#include<cstdio>
+#include<cstring>
+#include<vector>
+#include<utility>
+
+using namespace std;
+
+const int MAXN=1e5;
+typedef pair<int,int> pii;
+
+int N;
+bool isPrime[MAXN];
+vector<int> prime;
+
+void getPrime() {
+    memset(isPrime,true,sizeof isPrime);
+    isPrime[0]=isPrime[1]=false;
+    for(int i=2; i<MAXN; i++) {
+        if(isPrime[i])
+            for(int j=i*2; j<MAXN; j+=i)
+                isPrime[j]=false;
+        prime.push_back(i);
+    }
+}
+
+int main(void) {
+//    freopen("in.txt","r",stdin);
+    getPrime();
+    scanf("%d",&N);
+    int tN=N;
+    vector<pii> factor;
+    for(int i=0; i<prime.size(); i++) {
+        if(prime[i]>tN) break;
+        if(tN%prime[i]!=0) continue;
+        factor.push_back(pii(prime[i],0));
+        while(tN%prime[i]==0) {
+            tN/=prime[i];
+            factor.back().second++;
+        }
+    }
+    if(tN>1) factor.push_back(pii(tN,1));
+    printf("%d=",N);
+    if(factor.empty()) printf("1\n");
+    for(int i=0; i<factor.size(); i++) {
+        printf("%d",factor[i].first);
+        if(factor[i].second>1) printf("^%d",factor[i].second);
+        putchar(i==factor.size()-1?'\n':'*');
+    }
+    return 0;
+}
+
+/*
+97532468
+
+97532468=2^2*11*17*101*1291
+*/
